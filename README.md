@@ -6,3 +6,10 @@
 
 #### 遇到的问题
     https://stackoverflow.com/questions/43721962/godep-save-never-works
+
+
+#### go语音工具
+
+- go fmt
+
+#### go跨平台编译
