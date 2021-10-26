@@ -1,5 +1,7 @@
-###### lock 锁
+###### 示例程序
+[main.go](./main.go)
 
+###### lock 锁
 
 ###### linux lock锁机制
 

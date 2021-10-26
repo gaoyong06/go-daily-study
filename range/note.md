@@ -1,3 +1,6 @@
+###### 示例程序
+[main.go](./main.go)
+
 ###### range范围
 
 go语言中range关键字用于迭代数组（array）,切片（slice）,字符串（string）,通道（channel）或集合（map）的元素。

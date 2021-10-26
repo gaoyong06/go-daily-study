@@ -1,3 +1,6 @@
+###### 示例程序
+[main.go](./main.go)
+
 https://www.coder.work/article/195890
 ###### 空结构体体转换为{}
 

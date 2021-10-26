@@ -1,3 +1,6 @@
+###### 示例程序
+[main.go](./main.go)
+
 ###### Logrus 
 
 Logrus is a structured logger for Golang
