@@ -43,33 +43,34 @@ func main() {
 	fmt.Printf("type of a: %T\n", a) //type of a: main.NewInt
 	fmt.Printf("type of b: %T\n", b) //type of b: int
 
-	//基本实例化
+	//结构体初始化
 
+	//键值对形式
 	//方式一
-	//申明 Person 结构体类型变量 p1
-	var p1 Person
-	p1.Name = "张三"
-	p1.City = "西安"
-	p1.Age = 20
-
+	p1 := Person{
+		Name: "张三2",
+		City: "西安2",
+		Age:  22,
+	}
 	fmt.Printf("p1=%v\n", p1)
 	fmt.Printf("p1=%#v\n", p1)
 	fmt.Println()
 
+	//值列表形式
 	//方式二
 	p2 := Person{"张三1", "西安1", 21}
 	fmt.Printf("p2=%v\n", p2)
 	fmt.Printf("p2=%#v\n", p2)
 	fmt.Println()
 
-	//方式三
-	p3 := Person{
-		Name: "张三2",
-		City: "西安2",
-		Age:  22,
-	}
-	fmt.Printf("p3=%v\n", p3)
-	fmt.Printf("p3=%#v\n", p3)
+	//申明 Person 结构体类型变量 p3
+	var p3 Person
+	p3.Name = "张三"
+	p3.City = "西安"
+	p3.Age = 20
+
+	fmt.Printf("p3=%v\n", p1)
+	fmt.Printf("p3=%#v\n", p1)
 	fmt.Println()
 
 	// 忽略的字段默认为 (零值)[../variable/note.md]
@@ -152,6 +153,26 @@ func main() {
 	//调用沟通函数
 	p7 := NewPerson("张三7", "西安7", 27)
 	fmt.Println(p7)
+
+	//"爸爸的爸爸是爷爷"
+	type People struct {
+		name string
+
+		////这里要用指针类型,否则编译器会报invalid recursive type People的错误
+		//https://stackoverflow.com/questions/59935466/invalid-recursive-type-and-illegal-cycle-in-declaration-of
+		child *People
+	}
+
+	relation := &People{
+		name: "爷爷",
+		child: &People{
+			name: "爸爸",
+			child: &People{
+				name: "我",
+			},
+		},
+	}
+	fmt.Println(relation)
 
 	//方法和接受者
 
