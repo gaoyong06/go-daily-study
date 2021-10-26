@@ -14,7 +14,6 @@ GO语言中可以使用`type` 关键字来定义自定义类型。
 自定义类型是定义一个全新的类型。可以基于内置的基本类型定义，也可以通过struct, interface定义。
 
 ```go
-
 //将MyInt定义为int类型
 type MyInt int
 
@@ -29,15 +28,15 @@ type Person struct {
 type Animal Interface {
     fun move()
 }
-
 ```
-
 
 ###### 类型别名
 
 类型别名是`Go1.9`版本添加的新功能
 类型别名规定：TypeAlias只是Type的别名，本质上TypeAlias于Type是同一个类型。
+```go
 type TypeAlias = Type
+```
 
 ###### 类型定义和类型别名的区别
 
@@ -62,14 +61,16 @@ func main() {
 	fmt.Printf("type of a: %T\n", a) //type of a: main.NewInt
 	fmt.Printf("type of b: %T\n", b) //type of b: int
 }
-
 ```
 a 的类型是 `main.NewInt`, b 的类型是 `int`. `MyInt`类型只会在代码中存在，编译完成时并不会有`MyInt`类型。
 
 
 ###### 结构体
+结构体是一种自定义数据类型
 
 ###### 结构体定义
+
+```go
 type 类型名 struct {
     
     字段名 字段类型
@@ -77,6 +78,7 @@ type 类型名 struct {
     ...
     字段名 字段类型
 }
+```
 
 类型名：标识自定义结构体的名称，在同一个包内不能重复。
 字段名：表示结构体字段名。结构体中的字段名必须唯一。
@@ -85,20 +87,20 @@ type 类型名 struct {
 定义一个`Persion`(人)类型的结构体
 
 ```go
-	// Person 定义一个 人 类型的结构体
-	// 方法一
-	type Person struct {
-		Name string
-		City string
-		Age  int8
-	}
+// Person 定义一个 人 类型的结构体
+// 方法一
+type Person struct {
+    Name string
+    City string
+    Age  int8
+}
 
-	//同类型的字段可以放在同一行
-	// 方法二
-	type Person struct {
-		Name, City string
-		Age  int8
-	}
+//同类型的字段可以放在同一行
+// 方法二
+type Person struct {
+    Name, City string
+    Age  int8
+}
 ```
 
 内置的基础数据类型是用来描述**一个**值的，而结构体是用来描述**一组**值的。
@@ -114,10 +116,8 @@ type 类型名 struct {
 这种用法是为了更明确地表示一个变量被设置为零值。
 
 ```go
-    
-    // p1为结构体实例,Person为结构体类型
-    var p1 Person
-
+// p1为结构体实例,Person为结构体类型
+var p1 Person
 ```
 
 ###### new 实例化
@@ -125,20 +125,16 @@ type 类型名 struct {
 结构体在实例化后会形成指针类型的结构体。
 
 ```go
-
-    var p5 = new(Person) 
-    fmt.Printf("p5=%#v\n", p5) //p5=&main.Person{Name:"", City:"", Age:0}
-
+var p5 = new(Person) 
+fmt.Printf("p5=%#v\n", p5) //p5=&main.Person{Name:"", City:"", Age:0}
 ```
 
 ###### & 取地址实例化
 在`Go`语言中，对结构体进行`&`取地址操作时，视为对该类型进行一次`new`的实例化操作
 
 ```go
-
-    p6 := &Person{}
-    fmt.Printf("p6=%#v\n", p6) //p6=&main.Person{Name:"", City:"", Age:0}
-
+p6 := &Person{}
+fmt.Printf("p6=%#v\n", p6) //p6=&main.Person{Name:"", City:"", Age:0}
 ```
 
 ###### 结构体体零值
@@ -146,11 +142,9 @@ type 类型名 struct {
 结构体的零值是结构体中的每个字段都是零值
 
 ```go
-    var p1 Person
-    fmt.Printf("p1=%#v\n", p1) //p1=main.Person{Name:"", City:"", Age:0}
-    fmt.Println()
-    
-    
+var p1 Person
+fmt.Printf("p1=%#v\n", p1) //p1=main.Person{Name:"", City:"", Age:0}
+fmt.Println()
 ```
 ###### 结构体初始化
 
@@ -158,25 +152,23 @@ type 类型名 struct {
 "**键值对**"形式的初始化适合选择性填充字段较多的结构体，"**多个值**"的列表形式适合填充字段较少的结构体。
 
 ```go
+//键值对形式
+//方式一
+p1 := Person{
+Name: "张三2",
+City: "西安2",
+Age:  22,
+}
+fmt.Printf("p1=%v\n", p1)
+fmt.Printf("p1=%#v\n", p1)
+fmt.Println()
 
-    //键值对形式
-    //方式一
-    p1 := Person{
-    Name: "张三2",
-    City: "西安2",
-    Age:  22,
-    }
-    fmt.Printf("p1=%v\n", p1)
-    fmt.Printf("p1=%#v\n", p1)
-    fmt.Println()
-
-	//值列表形式
-	//方式二
-	p2 := Person{"张三1", "西安1", 21}
-	fmt.Printf("p2=%v\n", p2)
-	fmt.Printf("p2=%#v\n", p2)
-	fmt.Println()
-
+//值列表形式
+//方式二
+p2 := Person{"张三1", "西安1", 21}
+fmt.Printf("p2=%v\n", p2)
+fmt.Printf("p2=%#v\n", p2)
+fmt.Println()
 ```
 
 值列表初始化，需注意：
@@ -188,6 +180,15 @@ type 类型名 struct {
 匿名结构体没有类型名称,无需通过`type`关键字定义就可以直接使用
 
 ###### 匿名结构体定义和初始化
+```go
+var user struct {
+    Name string
+    Age  int
+}
+user.Name = "张三4"
+user.Age = 18
+fmt.Printf("%#v\n", user)
+```
 
 
 
