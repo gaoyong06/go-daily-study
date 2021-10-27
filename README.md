@@ -42,3 +42,7 @@
 ### 其他
 
 - #### [常见问题解答](./faq/note.md)
+
+### 推荐阅读
+
+- #### [go语言圣经](https://books.studygolang.com/gopl-zh/)
