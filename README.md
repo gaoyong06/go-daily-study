@@ -19,6 +19,7 @@
 - #### [数组](./array/note.md)
 - #### [切片](./slice/note.md)
 - #### [结构体](./structure/note.md)
+- #### [指针](./pointer/note.md)
 - #### [集合](./map/note.md)
 - #### [范围](./range/note.md)
 - #### [接口](./interface/note.md)
@@ -38,6 +39,8 @@
 
 - #### [锁](./lock/note.md)
 - #### [协议](./protobuf/note.md)
+- #### [进程监控](./monitor/note.md)
+- #### [基准测试](./test/note.md)
 
 ### 其他
 
@@ -46,3 +49,6 @@
 ### 推荐阅读
 
 - #### [go语言圣经](https://books.studygolang.com/gopl-zh/)
+
+### TODO
+- pointer
