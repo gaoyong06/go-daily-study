@@ -18,7 +18,6 @@ func assign2dMap(k1 string, k2 string, v interface{}, ret map[string]map[string]
 
 func main() {
 
-
 	//判断key是否存在
 	//a1 := map[string]string{
 	//	"name": "张三",
@@ -37,7 +36,20 @@ func main() {
 	assign2dMap("key1", "k_b", "b_value", ret)
 
 	fmt.Println(" main() 执行结果 ")
-	fmt.Printf("%#v", ret)
+	fmt.Printf("%#v\n", ret)
 
+	// map遍历
+	m1 := make(map[string]int)
+	m1["key1"] = 1
+	m1["key2"] = 2
+	m1["key3"] = 3
+
+	for k, v := range m1 {
+		fmt.Printf("key: %s, value: %d\n", k, v)
+	}
+
+	for k := range m1 {
+		fmt.Printf("key: %v \n", k)
+	}
 
 }

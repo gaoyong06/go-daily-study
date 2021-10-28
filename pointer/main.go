@@ -11,36 +11,40 @@ func fn2(x *int) {
 	*x = 40
 }
 
-type Persion struct {
+type Person struct {
 	name string
 	age  int
 	city string
 }
 
-func (p *Persion) rename(newName string) {
+func (p *Person) rename(newName string) {
 	p.name = newName
 }
 
 // 推荐的方式
 // 虽然为了一致性并不需要在 printName 中使用指针。但是这将使得 API 更简单，避免去记到底哪里需要引用。
-func (p *Persion) printName() {
+func (p *Person) printName() {
 	fmt.Println(p.name)
 }
 
 // 不推荐的方式
-func (p Persion) anotherPrintName() {
+func (p Person) anotherPrintName() {
 
 	fmt.Println(p.name)
 }
 
-type exam struct {
+type Student struct {
 
+	// 姓名
+	Name string
+	// 班级
+	Class string
+	// 学科
+	Subject string
 	// 成绩
-	score int
-	// 是否参加考试
-	// bool的零值是false
-	// *bool的零值是nil
-	present bool
+	// int 类型的零值是 0
+	// *int 类型的零值是 nil
+	Score *int
 }
 
 func main() {
@@ -62,6 +66,16 @@ func main() {
 	//访问指针变量中指向地址的值
 	fmt.Printf("b 指针变量指向地址的值：%d\n", *b)
 
+	//修改指针指向的值
+	fmt.Println("==== 修改指针指向的值 ====")
+	*b = 2
+	fmt.Printf("b 指针变量指向地址的值：%d\n", *b) //b 指针变量指向地址的值：2
+	fmt.Printf("a 变量的值是：%x\n", a)       //a 变量的值是：2
+
+	a = 3
+	fmt.Printf("b 指针变量指向地址的值：%d\n", *b) //b 指针变量指向地址的值：3
+	fmt.Printf("a 变量的值是：%x\n", a)       //a 变量的值是：3
+
 	// 需要修改函数参数时需要传递该参数的指针
 	x := 5
 	fn1(x)
@@ -70,7 +84,7 @@ func main() {
 	fmt.Println("fn2 run end x = ", x) //fn2 run end x =  40
 
 	//api一致性
-	p1 := Persion{
+	p1 := Person{
 		name: "张三",
 		age:  18,
 		city: "西安",
@@ -84,8 +98,9 @@ func main() {
 	p1.anotherPrintName()
 
 	//表示缺失
-	e1 := exam{}
-	fmt.Println(e1)
+	fmt.Println("==== 表示缺失 ====")
+	s1 := Student{}
+	fmt.Printf("%#v", s1)
 
 	//空指针
 	var ptr *int
@@ -96,6 +111,17 @@ func main() {
 	if ptr == nil {
 		fmt.Println("ptr == nil")
 	}
+
+	//指针接收者
+	fmt.Println("==== 指针接收者 ====")
+	p1 = Person{
+		name: "张三",
+		age:  18,
+		city: "西安",
+	}
+	fmt.Printf("%#v\n", p1) //main.Person{name:"张三", age:18, city:"西安"}
+	p1.rename("王五")
+	fmt.Printf("%#v\n", p1) //main.Person{name:"王五", age:18, city:"西安"}
 
 	// 待研究
 	// https://www.jianshu.com/p/97bfe8104e03
