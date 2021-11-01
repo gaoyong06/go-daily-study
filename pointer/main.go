@@ -100,10 +100,12 @@ func main() {
 	//表示缺失
 	fmt.Println("==== 表示缺失 ====")
 	s1 := Student{}
-	fmt.Printf("%#v", s1)
+	fmt.Printf("%#v\n", s1)
 
 	//空指针
 	var ptr *int
+
+	fmt.Println("==== 空指针 ====")
 	fmt.Printf("ptr的值为：%v\n", ptr)
 	fmt.Printf("ptr的地址为：%x\n", &ptr)
 
@@ -133,5 +135,29 @@ func main() {
 	fmt.Printf("i的值为：%#v\n", i)
 	fmt.Printf("i的地址为：%x\n", &i)
 	fmt.Println(i == nil) // 结果为 false
+
+	// new的使用
+	// 下面代码的作用是相同的
+	fmt.Println("==== new的使用 ====")
+	p2 := new(int)
+	fmt.Printf("%#v\n", p2)
+
+	var p3 int
+	p4 := &p3
+	fmt.Printf("%#v\n", p4)
+
+	//make和new的区别
+	fmt.Println("==== make和new的区别 ====")
+	p := new([]int)
+	fmt.Printf("p = %#v\n", p)
+
+	v := make([]int, 10, 50)
+	fmt.Printf("v = %#v\n", v)
+
+	//(*p)[0] = 18 //panic: runtime error: index out of range [0] with length 0
+	*p = append(*p, 1)
+	fmt.Printf("p = %#v\n", p)
+
+	v[1] = 18
 
 }
