@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/hashicorp/go-version"
+	"strconv"
 	//"strconv"
 )
 
@@ -27,9 +28,19 @@ func main() {
 	v22, _ := version.NewVersion(v2)
 
 	if v11.LessThan(v22) {
-		fmt.Printf("%s < %s", v1, v2)
+		fmt.Printf("%s < %s\n", v1, v2)
 	} else {
-		fmt.Printf("%s > %s", v1, v2)
+		fmt.Printf("%s > %s\n", v1, v2)
 	}
+
+	//数字转字符串
+	versionCode := 36
+	versionCodeStr := strconv.Itoa(versionCode)
+	fmt.Printf("%#v\n", versionCodeStr)
+
+	//字符串转数字
+	versionCodeStr1 := "36"
+	versionCode1, _ := strconv.Atoi(versionCodeStr1)
+	fmt.Printf("%#v\n", versionCode1)
 
 }
