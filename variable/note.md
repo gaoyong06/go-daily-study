@@ -153,4 +153,8 @@ func main() {
 //https://blog.csdn.net/weixin_42137723/article/details/112099869
 
 
+###### 变量的生命周期
+https://www.cnblogs.com/heych/p/12577492.html
+https://www.jianshu.com/p/78f10bdbac73
+
 

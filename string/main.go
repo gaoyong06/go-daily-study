@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/hashicorp/go-version"
 	"strconv"
+
+	"github.com/hashicorp/go-version"
 	//"strconv"
 )
 
@@ -42,5 +43,12 @@ func main() {
 	versionCodeStr1 := "36"
 	versionCode1, _ := strconv.Atoi(versionCodeStr1)
 	fmt.Printf("%#v\n", versionCode1)
+
+	//TODO: 字符串截取
+	//https://www.cnblogs.com/xuweiqiang/p/12558912.html
+
+	traceId := "abcdefg"
+	prefixLetter := traceId[len(traceId)-1:]
+	fmt.Println("prefixLetter: ", prefixLetter)
 
 }
